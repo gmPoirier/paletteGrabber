@@ -15,6 +15,7 @@ or textures.
 Here is an example output using the textures directory from the game Minecraft
 
 ![An exmaple output image](example.png)
+
 *Image scaled up to show detail, orginal image generated at 100x100 pixels*
 
 **Current restrictions**
