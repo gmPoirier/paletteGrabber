@@ -20,8 +20,7 @@ Here is an example output using the textures directory from the game Minecraft
 
 **Current restrictions**
 
-- Each individual image in the input directory must have 256 or fewer discrete 
-colors
+- The total number of colors in the final palette cannot exceed 10,000
 - The returned image will always been 100x100 pixels regardless of input size
 
 ## Changelog
