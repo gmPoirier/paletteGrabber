@@ -6,6 +6,9 @@ INPUT_DIR = "./input"
 OUTPUT_DIR = "./output"
 OUTPUT_FILE = "output.png"
 
+OUTPUT_FILE_WIDTH = 100
+OUTPUT_FILE_HEIGHT = 100
+
 def main():
     allImageColors = {}
 
@@ -22,7 +25,9 @@ def main():
                     allImageColors[color[1]] = color[0]
 
     numColors = len(allImageColors)
-    newImage = Image.new("RGBA",(100,100),(0,0,0,0))
+    newImage = Image.new("RGBA",(OUTPUT_FILE_WIDTH,\
+                                OUTPUT_FILE_HEIGHT),\
+                                (0,0,0,0))
     d = ImageDraw.Draw(newImage)
 
     x = 0
@@ -30,9 +35,11 @@ def main():
     for color in allImageColors.keys():
         d.point((x,y), color)
         x += 1
-        if x > 99:
+        if x > OUTPUT_FILE_WIDTH - 1:
             y += 1
             x = 0
+            if y > OUTPUT_FILE_WIDTH - 1:
+                break
 
     newImage.save(OUTPUT_DIR + "/" + OUTPUT_FILE)
 
