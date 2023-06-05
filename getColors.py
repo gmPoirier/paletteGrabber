@@ -9,6 +9,26 @@ OUTPUT_FILE = "output.png"
 OUTPUT_FILE_WIDTH = 100
 OUTPUT_FILE_HEIGHT = 100
 
+def generatePaletteImage(colorDict):
+    newImage = Image.new("RGBA",(OUTPUT_FILE_WIDTH,\
+                                OUTPUT_FILE_HEIGHT),\
+                                (0,0,0,0))
+
+    d = ImageDraw.Draw(newImage)
+    x = 0
+    y = 0
+
+    for color in colorDict.keys():
+        d.point((x,y), color)
+        ++x
+        if x > OUTPUT_FILE_WIDTH - 1:
+            ++y
+            x = 0
+            if y > OUTPUT_FILE_HEIGHT - 1:
+                break
+    
+    newImage.save(OUTPUT_DIR + "/" + OUTPUT_FILE)
+
 def main():
     allImageColors = {}
 
@@ -24,25 +44,8 @@ def main():
                 else:
                     allImageColors[color[1]] = color[0]
 
-    numColors = len(allImageColors)
-    newImage = Image.new("RGBA",(OUTPUT_FILE_WIDTH,\
-                                OUTPUT_FILE_HEIGHT),\
-                                (0,0,0,0))
-    d = ImageDraw.Draw(newImage)
-
-    x = 0
-    y = 0
-    for color in allImageColors.keys():
-        d.point((x,y), color)
-        x += 1
-        if x > OUTPUT_FILE_WIDTH - 1:
-            y += 1
-            x = 0
-            if y > OUTPUT_FILE_WIDTH - 1:
-                break
-
-    newImage.save(OUTPUT_DIR + "/" + OUTPUT_FILE)
-
+    # numColors = len(allImageColors)
+    generatePaletteImage(allImageColors)
 
 
 if __name__ == "__main__":
